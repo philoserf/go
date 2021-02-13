@@ -1,4 +1,4 @@
-# Go code
+# Go tools, toys, & libraries 
 
 
 <hr>
