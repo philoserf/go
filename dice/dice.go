@@ -12,7 +12,7 @@ func init() { //nolint
 	rand.Seed(seed.Int64())
 }
 
-// D returns a random integer, either 0 or 1.
+// D returns a random integer between 1 and sides.
 func D(sides int) int {
 	return rand.Intn(sides) + 1 //nolint
 }
