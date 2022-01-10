@@ -2,12 +2,11 @@
 
 > Based on the [Aria Worlds][aw] supplement to the tabletop role-playing game, [Aria: Canticle of the Monomyth][aria], designed by [Christian Moore][cm] and [Owen Seyler][os] and published by [Last Unicorn Games][lu].
 
-
-
 <hr>
 | [home] | [philoserf.com] | [source] |
 
 <!-- ref -->
+
 [home]: https://philoserf.github.io/
 [philoserf.com]: https://philoserf.com/
 [source]: https://github.com/philoserf/go

@@ -2,11 +2,11 @@
 
 > Based on the original [Traveller][tsfrpg] tabletop science-fiction role-playing game designed by [Marc Miller][mm] and published [Game Designers' Workshop][gdw].
 
-
 <hr>
 | [home] | [philoserf.com] | [source] |
 
 <!-- ref -->
+
 [home]: https://philoserf.github.io/
 [philoserf.com]: https://philoserf.com/
 [source]: https://github.com/philoserf/go
