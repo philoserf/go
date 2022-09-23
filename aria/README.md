@@ -14,5 +14,4 @@
 [aw]: https://en.wikipedia.org/wiki/Aria_Worlds
 [lu]: https://en.wikipedia.org/wiki/Last_Unicorn_Games
 [cm]: https://en.wikipedia.org/wiki/Christian_Moore
-[bc]: https://en.wikipedia.org/wiki/Bernie_Cahill
 [os]: https://en.wikipedia.org/wiki/Owen_Seyler

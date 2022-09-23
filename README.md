@@ -7,7 +7,8 @@
 - [traveller][traveller]: Traveller generation toy
 
 <hr>
-| [home] | [philoserf.com] | [source] |
+
+[home] | [philoserf.com] | [source]
 
 <!-- ref -->
 
