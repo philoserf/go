@@ -2,15 +2,8 @@
 package dice
 
 import (
-	crand "crypto/rand"
 	"math/rand"
 )
-
-func init() { //nolint
-	bits := 64
-	seed, _ := crand.Prime(crand.Reader, bits)
-	rand.Seed(seed.Int64())
-}
 
 // D returns a random integer between 1 and sides.
 func D(sides int) int {
