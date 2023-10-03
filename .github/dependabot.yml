@@ -5,11 +5,11 @@
 
 version: 2
 updates:
-  - package-ecosystem: "gomod"
-    directory: "/dice"
+  - package-ecosystem: gomod
+    directory: "/dice”
     schedule:
-      interval: "weekly"
-  - package-ecosystem: “github-actions”
+      interval: weekly
+  - package-ecosystem: github-actions
     directory: “/”
     schedule:
-      interval: “weekly”
+      interval: weekly
