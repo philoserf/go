@@ -1,0 +1,19 @@
+# https://taskfile.dev
+version: '3'
+tasks:
+  default:
+    vars:
+     COVER_NAME: coverage
+     COVER_FILE: "{{.COVER_NAME}}.out"
+     COVER_HTML: "{{.COVER_NAME}}.html"
+    cmds:
+      - go vet ./...
+      - go fmt ./...
+      - go test -v -race -coverprofile={{.COVER_FILE}} --covermode=atomic ./...
+      - go tool cover -html={{.COVER_FILE}} -o {{.COVER_HTML}}
+  next:
+    cmds:
+      - go get -u ./...
+      - go mod tidy
+      - gofumpt -e -l -w -extra .
+      - golangci-lint run --fix .
