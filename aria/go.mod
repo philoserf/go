@@ -1,3 +1,3 @@
 module github.com/philoserf/go/aria
 
-go 1.21
+go 1.23.3
