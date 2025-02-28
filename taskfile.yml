@@ -1,0 +1,74 @@
+version: "3"
+
+vars:
+  GO_FILES: "**/*.go"
+  MD_FILES: "**/*.md"
+
+tasks:
+  default:
+    deps: [lint, test]
+    cmds:
+      - echo "Done!"
+
+  build:
+    desc: Build all packages
+    cmds:
+      - go build ./...
+
+  test:
+    desc: Run all tests
+    cmds:
+      - go test -race ./...
+
+  test:one:
+    desc: Run a specific test
+    cmds:
+      - go test -race -run {{.TEST}} ./...
+    vars:
+      TEST: '{{default "*" .TEST}}'
+
+  cover:
+    desc: Run tests with coverage
+    cmds:
+      - go test -race -coverprofile=coverage.out ./...
+      - go tool cover -html=coverage.out
+
+  fmt:
+    desc: Format Go code using gofumpt
+    cmds:
+      - gofumpt -l -w .
+
+  lint:
+    desc: Run all linters
+    deps: [lint:go, lint:md]
+
+  lint:go:
+    desc: Lint Go code using golangci-lint
+    cmds:
+      - golangci-lint run --fix
+
+  lint:md:
+    desc: Lint Markdown files using markdownlint
+    cmds:
+      - npx markdownlint-cli2 "{{.MD_FILES}}" --fix
+
+  pretty:
+    desc: Format files using prettier
+    cmds:
+      - npx prettier --write "{{.MD_FILES}}"
+
+  clean:
+    desc: Clean build artifacts
+    cmds:
+      - rm -rf coverage.out
+
+  all:
+    desc: Run all tasks (fmt, lint, build, test)
+    deps: [fmt, lint, build, test]
+
+  setup:
+    desc: Install dependencies
+    cmds:
+      - go install mvdan.cc/gofumpt@latest
+      - go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+      - npm install -g markdownlint-cli2 prettier
