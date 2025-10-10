@@ -33,6 +33,11 @@ tasks:
       - go test -race -coverprofile=coverage.out ./...
       - go tool cover -html=coverage.out
 
+  bench:
+    desc: Run benchmarks
+    cmds:
+      - go test -bench=. -benchmem ./...
+
   fmt:
     desc: Format Go code using gofumpt
     cmds:
@@ -64,11 +69,11 @@ tasks:
 
   all:
     desc: Run all tasks (fmt, lint, build, test)
-    deps: [fmt, lint, build, test]
+    deps: [setup, fmt, lint, build, test]
 
   setup:
     desc: Install dependencies
     cmds:
       - go install mvdan.cc/gofumpt@latest
       - go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-      - npm install -g markdownlint-cli2 prettier
+      # - npm install -g markdownlint-cli2 prettier
