@@ -15,8 +15,11 @@ func TestD(t *testing.T) {
 		lower int
 	}{
 		{"D2 is between 1 and 2", 2, 1},
+		{"D4 is between 1 and 4", 4, 1},
 		{"D6 is between 1 and 6", 6, 1},
+		{"D8 is between 1 and 8", 8, 1},
 		{"D10 is between 1 and 10", 10, 1},
+		{"D12 is between 1 and 12", 12, 1},
 		{"D20 is between 1 and 20", 20, 1},
 		{"D100 is between 1 and 100", 100, 1},
 	}
@@ -26,7 +29,7 @@ func TestD(t *testing.T) {
 
 			for range [1000]int{} {
 				got := dice.D(test.upper)
-				if !(got <= test.upper) || !(got >= test.lower) {
+				if (got > test.upper) || (got < test.lower) {
 					t.Errorf("D(%v) %v >= %v >= %v", test.upper, test.upper, got, test.lower)
 				}
 			}
@@ -34,58 +37,63 @@ func TestD(t *testing.T) {
 	}
 }
 
-func TestD2(t *testing.T) {
+func TestDInvalidInput(t *testing.T) {
 	t.Parallel()
 
-	for range [1000]int{} {
-		got := dice.D2()
-		if !(got <= 2) || !(got >= 1) {
-			t.Errorf("D2() got %v, want a number between 1 and 2", got)
-		}
+	tests := []struct {
+		name  string
+		sides int
+	}{
+		{"zero sides panics", 0},
+		{"negative sides panics", -1},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			t.Parallel()
+
+			defer func() {
+				if r := recover(); r == nil {
+					t.Errorf("D(%v) did not panic", test.sides)
+				}
+			}()
+
+			dice.D(test.sides)
+		})
 	}
 }
 
-func TestD6(t *testing.T) {
+func TestSpecificDice(t *testing.T) {
 	t.Parallel()
 
-	for range [1000]int{} {
-		got := dice.D6()
-		if !(got <= 6) || !(got >= 1) {
-			t.Errorf("D6() got %v, want a number between 1 and 6", got)
-		}
+	tests := []struct {
+		name  string
+		fn    func() int
+		upper int
+		lower int
+	}{
+		{"D2", dice.D2, 2, 1},
+		{"D4", dice.D4, 4, 1},
+		{"D6", dice.D6, 6, 1},
+		{"D8", dice.D8, 8, 1},
+		{"D10", dice.D10, 10, 1},
+		{"D12", dice.D12, 12, 1},
+		{"D20", dice.D20, 20, 1},
+		{"D100", dice.D100, 100, 1},
 	}
-}
 
-func TestD10(t *testing.T) {
-	t.Parallel()
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			t.Parallel()
 
-	for range [1000]int{} {
-		got := dice.D10()
-		if !(got <= 10) || !(got >= 1) {
-			t.Errorf("D10() got %v, want a number between 1 and 10", got)
-		}
-	}
-}
-
-func TestD20(t *testing.T) {
-	t.Parallel()
-
-	for range [1000]int{} {
-		got := dice.D20()
-		if !(got <= 20) || !(got >= 1) {
-			t.Errorf("D20() got %v, want a number between 1 and 20", got)
-		}
-	}
-}
-
-func TestD100(t *testing.T) {
-	t.Parallel()
-
-	for range [1000]int{} {
-		got := dice.D100()
-		if !(got <= 100) || !(got >= 1) {
-			t.Errorf("D100() got %v, want a number between 1 and 100", got)
-		}
+			for range [1000]int{} {
+				got := test.fn()
+				if (got > test.upper) || (got < test.lower) {
+					t.Errorf("%s() got %v, want a number between %v and %v",
+						test.name, got, test.lower, test.upper)
+				}
+			}
+		})
 	}
 }
 
@@ -110,7 +118,7 @@ func TestRoll(t *testing.T) {
 
 			for range [1000]int{} {
 				got := dice.Roll(test.count, test.sides)
-				if !(got <= test.upperBound) || !(got >= test.lowerBound) {
+				if (got > test.upperBound) || (got < test.lowerBound) {
 					t.Errorf("Roll(%v, %v) got %v, want between %v and %v",
 						test.count, test.sides, got, test.lowerBound, test.upperBound)
 				}
@@ -119,24 +127,59 @@ func TestRoll(t *testing.T) {
 	}
 }
 
-func TestRoll2D6(t *testing.T) {
+func TestRollInvalidInput(t *testing.T) {
 	t.Parallel()
 
-	for range [1000]int{} {
-		got := dice.Roll2D6()
-		if !(got <= 12) || !(got >= 2) {
-			t.Errorf("Roll2D6() got %v, want a number between 2 and 12", got)
-		}
+	tests := []struct {
+		name  string
+		count int
+		sides int
+	}{
+		{"zero count panics", 0, 6},
+		{"negative count panics", -1, 6},
+		{"zero sides panics", 2, 0},
+		{"negative sides panics", 2, -1},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			t.Parallel()
+
+			defer func() {
+				if r := recover(); r == nil {
+					t.Errorf("Roll(%v, %v) did not panic", test.count, test.sides)
+				}
+			}()
+
+			dice.Roll(test.count, test.sides)
+		})
 	}
 }
 
-func TestRoll3D6(t *testing.T) {
+func TestSpecificRolls(t *testing.T) {
 	t.Parallel()
 
-	for range [1000]int{} {
-		got := dice.Roll3D6()
-		if !(got <= 18) || !(got >= 3) {
-			t.Errorf("Roll3D6() got %v, want a number between 3 and 18", got)
-		}
+	tests := []struct {
+		name       string
+		fn         func() int
+		lowerBound int
+		upperBound int
+	}{
+		{"Roll2D6", dice.Roll2D6, 2, 12},
+		{"Roll3D6", dice.Roll3D6, 3, 18},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			t.Parallel()
+
+			for range [1000]int{} {
+				got := test.fn()
+				if (got > test.upperBound) || (got < test.lowerBound) {
+					t.Errorf("%s() got %v, want a number between %v and %v",
+						test.name, got, test.lowerBound, test.upperBound)
+				}
+			}
+		})
 	}
 }
