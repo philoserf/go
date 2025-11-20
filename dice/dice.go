@@ -8,11 +8,11 @@ import (
 
 // These constants define common dice parameters.
 const (
-	twoDice   = 2
-	threeDice = 3
-	fourSides = 4
-	sixSides  = 6
-	eightSides = 8
+	twoDice     = 2
+	threeDice   = 3
+	fourSides   = 4
+	sixSides    = 6
+	eightSides  = 8
 	twelveSides = 12
 )
 

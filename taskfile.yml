@@ -55,7 +55,7 @@ tasks:
   lint:md:
     desc: Lint Markdown files using markdownlint
     cmds:
-      - npx markdownlint-cli2 "{{.MD_FILES}}" --fix
+      - markdownlint --fix "{{.MD_FILES}}"
 
   pretty:
     desc: Format files using prettier
@@ -72,8 +72,6 @@ tasks:
     deps: [setup, fmt, lint, build, test]
 
   setup:
-    desc: Install dependencies
+    desc: Install dependencies using Homebrew
     cmds:
-      - go install mvdan.cc/gofumpt@latest
-      - go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-      # - npm install -g markdownlint-cli2 prettier
+      - brew bundle
