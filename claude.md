@@ -6,7 +6,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a Go monorepo containing tools, toys, and libraries. The primary package is `dice`, a high-performance dice rolling library for tabletop RPGs and games built on `math/rand/v2` with zero allocations per roll.
 
-Development dependencies are managed via Homebrew using a Brewfile. Run `brew bundle` or `task setup` to install all required tools.
+- **Module Path**: `github.com/philoserf/go`
+- **Go Version**: 1.25+
+- **Dependencies**: Managed via Homebrew using a Brewfile
+
+Run `brew bundle` or `task setup` to install all required development tools (gofumpt, golangci-lint, go-task, markdownlint-cli).
 
 ## Development Commands
 
