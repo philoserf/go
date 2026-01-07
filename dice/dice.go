@@ -8,12 +8,15 @@ import (
 
 // These constants define common dice parameters.
 const (
-	twoDice     = 2
-	threeDice   = 3
-	fourSides   = 4
-	sixSides    = 6
-	eightSides  = 8
-	twelveSides = 12
+	twoDice      = 2
+	threeDice    = 3
+	fourSides    = 4
+	sixSides     = 6
+	eightSides   = 8
+	tenSides     = 10
+	twelveSides  = 12
+	twentySides  = 20
+	hundredSides = 100
 )
 
 // D returns a random integer between 1 and sides.
@@ -47,7 +50,7 @@ func D8() int {
 
 // D10 returns a random integer between 1 and 10.
 func D10() int {
-	return D(10) //nolint
+	return D(tenSides)
 }
 
 // D12 returns a random integer between 1 and 12.
@@ -57,12 +60,12 @@ func D12() int {
 
 // D20 returns a random integer between 1 and 20.
 func D20() int {
-	return D(20) //nolint
+	return D(twentySides)
 }
 
 // D100 returns a random integer between 1 and 100.
 func D100() int {
-	return D(100) //nolint
+	return D(hundredSides)
 }
 
 // Roll returns the sum of multiple dice with the given number of sides.
