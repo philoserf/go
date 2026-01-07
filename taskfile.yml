@@ -57,11 +57,6 @@ tasks:
     cmds:
       - markdownlint --fix "{{.MD_FILES}}"
 
-  pretty:
-    desc: Format files using prettier
-    cmds:
-      - npx prettier --write "{{.MD_FILES}}"
-
   clean:
     desc: Clean build artifacts
     cmds:
