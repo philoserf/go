@@ -1,10 +1,20 @@
 # AGENTS.md
 
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 Go monorepo with `dice` - high-performance dice rolling library for tabletop RPGs built on `math/rand/v2` with zero allocations per roll.
 
 - **Module Path**: `github.com/philoserf/go`
 - **Go Version**: 1.25+
 - **Setup**: `brew bundle` or `task setup` to install gofumpt, golangci-lint, go-task, markdownlint-cli
+
+## Architecture Notes
+
+- **No external dependencies** — stdlib only, no `go.sum`
+- **Go 1.25+ features in use** — `range count` (range-over-int), `b.Loop()` in benchmarks
+- **golangci-lint uses default config** — no `.golangci.yml`
+- **Test imports use `//nolint:depguard`** on the module's own package import
+- **GitHub repo** — squash merge only, branch protection on main
 
 ## Development Commands
 
