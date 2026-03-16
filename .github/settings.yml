@@ -2,7 +2,7 @@ _extends: .github
 
 repository:
   name: go
-  description: "tools and libraries"
+  description: "Go tools and libraries"
   homepage: https://philoserf.github.io/go/
   topics:
     - go
