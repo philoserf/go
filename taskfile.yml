@@ -68,5 +68,10 @@ tasks:
 
   setup:
     desc: Install dependencies using Homebrew
+    env:
+      # macOS 27 is unknown to current Homebrew, so it resolves the bottle tag
+      # as `arm64_dunno` and 404s. Pin to 26 (Tahoe) bottles, which run fine
+      # on 27. Remove once Homebrew recognizes macOS 27.
+      HOMEBREW_FAKE_MACOS: "26.0"
     cmds:
       - brew bundle
