@@ -12,7 +12,7 @@ Go monorepo with `dice` - high-performance dice rolling library for tabletop RPG
 
 - **No external dependencies** — stdlib only, no `go.sum`
 - **Go 1.25+ features in use** — `range count` (range-over-int), `b.Loop()` in benchmarks
-- **golangci-lint uses default config** — no `.golangci.yml`
+- **golangci-lint config** — `.golangci.yml` uses `default: all`, disabling only `wsl` (deprecated), `testableexamples` (random dice rolls can't have a pinned `Output:`), and `gosec` G404 (non-cryptographic PRNG by design)
 - **Test imports use `//nolint:depguard`** on the module's own package import
 - **GitHub repo** — squash merge only, branch protection on main
 

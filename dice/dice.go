@@ -25,6 +25,7 @@ func D(sides int) int {
 	if sides < 1 {
 		panic(fmt.Sprintf("dice: sides must be positive, got %d", sides))
 	}
+
 	return rand.IntN(sides) + 1
 }
 
@@ -74,9 +75,11 @@ func Roll(count, sides int) int {
 	if count < 1 {
 		panic(fmt.Sprintf("dice: count must be positive, got %d", count))
 	}
+
 	if sides < 1 {
 		panic(fmt.Sprintf("dice: sides must be positive, got %d", sides))
 	}
+
 	total := 0
 	for range count {
 		total += D(sides)

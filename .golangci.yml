@@ -1,0 +1,11 @@
+version: "2"
+
+linters:
+  default: all
+  disable:
+    - wsl # deprecated; superseded by wsl_v5
+    - testableexamples # examples demonstrate random dice rolls; output is non-deterministic by design
+  settings:
+    gosec:
+      excludes:
+        - G404 # dice rolls use a seedable math/rand/v2 PRNG by design, never cryptographic
