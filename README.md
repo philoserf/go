@@ -1,5 +1,7 @@
 # Go tools, toys, & libraries
 
+> **Archived.** This repository is no longer maintained.
+
 A collection of Go packages for various purposes.
 
 ## Contents
